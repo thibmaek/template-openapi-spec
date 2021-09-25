@@ -1,2 +1,3 @@
-# template-openapi-spec
-Template for creating OpenAPI spec repository
+# X OpenAPI Specs
+
+Official OpenAPI spec for the [X REST API](https://x-openapi-specs.netlify.app).
