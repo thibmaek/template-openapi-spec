@@ -1,0 +1,29 @@
+name: "Release Pipeline"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_specs:
+    name: "Publish specs"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: stoplightio/spectral-action@master
+        with:
+          file_glob: "openapi.yaml"
+
+      - uses: Legion2/swagger-ui-action@main
+        with:
+          output: build
+          spec-file: openapi.yaml
+
+      - uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: "deploy --dir=build --prod"
