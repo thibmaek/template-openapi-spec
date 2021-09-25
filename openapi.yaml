@@ -1,0 +1,64 @@
+openapi: 3.0.1
+
+tags: []
+
+info:
+  title: X API
+  version: '1'
+  description: The OpenAPI interface for the X API
+  contact:
+    name: "Thibault Maekelbergh"
+
+servers:
+  - url: "http://127.0.0.1:3000"
+
+paths:
+  /route:
+    get:
+      operationId: get-route
+      summary: ""
+      description: ""
+      tags: []
+      responses:
+        '200':
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Component'
+
+  /route/{id}:
+    get:
+      operationId: get-route-detail
+      summary: ""
+      description: ""
+      tags: []
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+
+components:
+  schemas:
+    Component:
+      description: ""
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 723
+        name:
+          type: string
+          example: ""
